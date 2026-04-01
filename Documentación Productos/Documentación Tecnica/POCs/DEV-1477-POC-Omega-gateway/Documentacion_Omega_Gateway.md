@@ -1882,3 +1882,10 @@ graph LR
     style MO fill:#ED7100,stroke:#fff,color:#fff
     style MMS fill:#ED7100,stroke:#fff,color:#fff
 ```
+
+## 6. Supuestos y Consideraciones (Configuración de Red)
+
+> [!NOTE]
+> Durante la etapa iterativa de POC y armado funcional de las opciones, los destinos (`endpoints` de *Fallback* u otros microservicios) y las configuraciones de puertos **se han configurado en duro apuntando a `localhost` y puertos fijos (ej. `localhost:3000`)**.
+> 
+> **Action Item para Producción:** Esta configuración es **exclusivamente a modo de prueba local**. En la arquitectura de AWS productiva (donde el Go Gateway resida en AWS Fargate), las URLs de enrutamiento se deberán inyectar y declarar apropiadamente resolviendo por Service Discovery de Amazon ECS, `Cloud Map`, o balanceadores transaccionales internos (ALBs de Backend), evitando la dependencia de IPs / Localhosts estáticos en la declaración de las Opciones probadas.
