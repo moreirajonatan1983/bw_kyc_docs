@@ -45,6 +45,7 @@ flowchart TD
         end
 
         REDIS["🔴 ElastiCache Redis\nResolución de sesión:\nsession:{token} → branchId"]
+        CW["📝 Amazon CloudWatch\nApplication Logs (awslogs)"]
     end
 
     subgraph Backends["Destinos"]
@@ -63,6 +64,7 @@ flowchart TD
     ALB --> GW
     GW <-->|GET session:token| REDIS
     GW --> DD
+    GW -->|Logs| CW
 
     GW -->|"branchId no match\no sin branchId"| OMEGA
     GW -->|"branchId=200\n+ /api/pagos/*"| PAGOS
